@@ -11,8 +11,6 @@ void display(struct link*);
 struct link *push(struct link*);
 struct link *pop(struct link*);
 
-int main_menu();
-
 void display(struct link* start)
 {    
     while(start != NULL)
@@ -55,19 +53,13 @@ struct link *pop(struct link* start)
     return start;
 }
 
-int main_menu(){
-    int choice;
-    printf("1. Push\n2. Pop\n3. Display\n4. Exit\n");
-    scanf("%d", &choice);
-    return choice;
-}
-
 int main(){
     struct link *start;
-    int choice;
+    int choice;    
     start = NULL;
     do{
-        choice = main_menu();
+        printf("1. Push\n2. Pop\n3. Display\n4. Exit\n");
+        scanf("%d", &choice);
         switch(choice){
             case 1:
                 start = push(start);
