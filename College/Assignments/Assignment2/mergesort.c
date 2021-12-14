@@ -27,15 +27,22 @@ void merge_sort(int *arr, int n)
         int *right = (int *)malloc((n - mid) * sizeof(int));
         for (int i = 0; i < mid; i++)left[i] = arr[i];
         for (int i = mid; i < n; i++)right[i - mid] = arr[i];
+
+        //recursively sort the left and right halves
         merge_sort(left, mid);
         merge_sort(right, n - mid);
-        int i = 0, j = 0, k = 0;
+
+        //three subarrays are sorted now merge them
+        int i = 0, j = 0, k = 0;        
+        //merge the left and right subarrays
         while (i < mid && j < n - mid)
         {
-            if (left[i] < right[j])arr[k++] = left[i++];
-            else arr[k++] = right[j++];
+            if (left[i] < right[j])arr[k++] = left[i++];//left[i] is smaller than right[j]
+            else arr[k++] = right[j++];//right[j] is smaller than left[i]            
         }
+        // copy the remaining elements of left
         while (i < mid)arr[k++] = left[i++];
+        // copy the remaining elements of right
         while (j < n - mid)arr[k++] = right[j++];
         free(left);
         free(right);
